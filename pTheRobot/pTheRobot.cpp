@@ -8,7 +8,8 @@
 using namespace std;
 
 int main()
-{
+{	
+	cout << "Introduceti numarul de blocuri: ";
 	cin >> n;
 	init();
 

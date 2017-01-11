@@ -83,3 +83,13 @@ void init() {
 		}
 	}
 }
+
+void afisare()
+{
+	for (int i = 0; i<n; i++) {
+		for (int j = 0; j<stiva[i].length; j++) {
+			cout << stiva[i].val[j] << " ";
+		}
+		cout << endl;
+	}
+}
