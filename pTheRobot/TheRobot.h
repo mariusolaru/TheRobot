@@ -93,3 +93,43 @@ void afisare()
 		cout << endl;
 	}
 }
+
+//Move a onto b
+void move_onto(int a, int b, string &warning) {
+	if (a == b) {
+		warning = "Nu poti muta un numar peste el insasi.";
+		return;
+	}
+	else if (poz[a].y == poz[b].y) {
+		warning = "Aceste doua numere sunt in aceeasi stiva.";
+		return;
+	}
+
+
+	int len;
+
+	stive c;
+	c.length = 0;
+	int k = 0;
+
+	len = stiva[poz[a].y].length;
+	for (int i = len - 1; i > poz[a].x; i--) {
+		c.val[k++] = stiva[poz[a].y].val[i];
+		c.length++;
+		pop(poz[a].y);
+	}
+
+	pop(poz[a].y);
+
+	len = stiva[poz[b].y].length;
+	for (int i = len - 1; i > poz[b].x; i--) {
+		c.val[k++] = stiva[poz[b].y].val[i];
+		c.length++;
+		pop(poz[b].y);
+	}
+
+	spread(c);
+
+	push(poz[b].y, a);
+	warning = "Job done!";
+}
