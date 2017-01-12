@@ -166,3 +166,43 @@ void move_over(int a, int b, string &warning) {
 	push(poz[b].y, a);
 	warning = "Job done!";
 }
+
+
+//Pile a onto b
+void pile_onto(int a, int b, string &warning) {
+	if (a == b) {
+		warning = "Nu poti muta un numar peste el insasi.";
+		return;
+	}
+	else if (poz[a].y == poz[b].y) {
+		warning = "Aceste doua numere sunt in aceeasi stiva.";
+		return;
+	}
+
+	int len;
+
+	stive c, d;
+	c.length = 0;
+	d.length = 0;
+
+	len = stiva[poz[b].y].length;
+	for (int i = len - 1; i > poz[b].x; i--) {
+		d.val[d.length] = stiva[poz[b].y].val[i];
+		d.length++;
+		pop(poz[b].y);
+	}
+	spread(d);
+
+	len = stiva[poz[a].y].length;
+	for (int i = len - 1; i >= poz[a].x; i--) {
+		c.val[c.length] = stiva[poz[a].y].val[i];
+		c.length++;
+		pop(poz[a].y);
+	}
+
+	for (int i = c.length - 1; i >= 0; i--) {
+		push(poz[b].y, c.val[i]);
+	}
+
+	warning = "Job done!";
+}
