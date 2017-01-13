@@ -24,17 +24,63 @@ string CleanString(string command)
 
 int main()
 {	
-	string err;
-
 	cout << "Introduceti numarul de blocuri: ";
 	cin >> n;
 	init();
+	string command, clean, err;
+	vector <string> args;
+	unsigned int i, j;
+	do
+	{
+		getline(cin, command);
+		clean = CleanString(command);
+		j = 0;
+		for (i = 0; i < 4; ++i)
+		{
+			string arg;
+			while (j < clean.size() && clean[j] != ' ')
+			{
+				arg.push_back(clean[j]);
+				++j;
+			}
+			if (clean[j] == ' ')
+				++j;
+			args.push_back(arg);
+		}
+		if (args[1] != args[3])
+		{
+			if (args[0] == "move")
+			{
+				if (args[2] == "onto") {
+					move_onto(stoi(args[1]), stoi(args[3]), err);
+					afisare();
+				}
+				else if (args[2] == "over") {
+					move_over(stoi(args[1]), stoi(args[3]), err);
+					afisare();
+				}
+			}
+			else if (args[0] == "pile")
+			{
+				if (args[2] == "onto") {
+					pile_onto(stoi(args[1]), stoi(args[3]), err);
+					afisare();
+				}
+				else if (args[2] == "over") {
+					pile_over(stoi(args[1]), stoi(args[3]), err);
+					afisare();
+				}
+			}
+		}
+		while (!args.empty())
+			args.pop_back();
+		if (clean == "quit")
+		{
+			cout << "Versiunea finala a blocurilor este : " << endl;
+			afisare();
+		}
 
-	move_onto(4, 3, err);
-	move_over(2, 5, err);
-	pile_onto(3, 4, err);
-	pile_over(1, 2, err);
-
-    return 0;
+	} while (clean != "quit");
+	return 0;
 }
 
