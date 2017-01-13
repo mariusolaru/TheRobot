@@ -1,0 +1,12 @@
+# TheRobot
+Primul pas este acela de a declarara numarul de blocuri pe care il dorim .
+Apoi , tastand comenzile 
+'move x over y' , sau 
+'move x onto y' , sau 
+'pile x over y' , sau 
+'pile x onto y' (0 <= x < y < nrBlocuri || 0 <= y < x < nrBlocuri)
+
+blocurile isi vor schimba pozitiile , acestea punandu-se unele peste altele , sau unele sub altele , in functie de comanda . 
+
+Dupa fiecare comanda , va fi afisata situatia actuala a blocurilor . 
+Cand se va tasta "quit" , se va afisa situatia finala a blocurilor , si se va opri executia programului .
